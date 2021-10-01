@@ -1,8 +1,9 @@
 import React from "react";
 import LogoPayment from "../../../Components/Form/LogoPayment/LogoPayment";
+import { withTranslation } from "react-i18next";
 
-
-const BlockFile = () => {
+const BlockFile = (props) => {
+    const { t } = props;
     return(
         <>
             <div className="pd-40 mn">
@@ -10,51 +11,44 @@ const BlockFile = () => {
                     <div className="text-title">
                         <div className="row d-flex justify-content-between">
                             <div className="d-flex justify-content-between">
-                                <h3>ЗАГРУЗИТЕ ГРАФИЧЕСКИЙ ФАЙЛ</h3>
+                                <h3>{t("Graftext")}</h3>
                             </div>
 
                         </div>
                     </div>
                     <p className="mt-3 input-group">
                         <input className="form-control" type="file" id="formFile"/>
-                        <button className="btn mx-2 img-btn">Загрузить</button>
+                        <button className="btn mx-2 img-btn">{t("textZapBaner3")}</button>
                     </p>
                     <p className="rek mt-4">
-                        Рекомендуемый размер файла 720х576 пикс. или соотношение сторон 4:3.<br/>
-                        Ограничение по размеру файла 3 Мб. К закачке допустимы графические форматы PNG, JPG,
-                        GIF.
+                        {t("uploadBanner")}
                     </p>
                     <div className="d-flex align-items-center">
                         <div className="preview" id="preview_cont">
                             <span className="text">Предпросмотр</span>
                         </div>
                         <div className="red-text">
-                            У вас есть возможность при несоответствии размеров файла подкорректировать его,
-                            перемещая в области «предпросмотра»
+                            {t("uploadBanner2")}
                         </div>
                     </div>
 
                 </div>
 
                 <div className="@media cont">
-                    <h3>Требования к содержанию баннера</h3>
-                    <p>Уважаемый Рекламодатель!</p>
+                    <h3>{t("textZapBaner")}</h3>
+                    <p>{t("textZapoln2")}</p>
                     <ul>
                         <li>
-                            Текст не должен побуждать граждан к насилию, агрессии и опасным действиям, создающим
-                            угрозу жизни и здоровью, а также призывающему к беспорядку;
+                            {t("textZapBaner2")}
                         </li>
                         <li>
-                            Рекламодатель самостоятельно несет ответственность за соответствие рекламы
-                            действующему законодательству Кыргызской Республики о рекламе;
+                            {t("textZapoln5")}
                         </li>
                         <li>
-                            Если рекламируемый товар/услуга подлежат лицензированию укажите номера лицензий и
-                            наименование органов, выдавшего их и/или укажите «товар сертифицирован», если
-                            рекламируемый товар подлежит обязательной сертификации;
+                            {t("textZapoln6")}
                         </li>
                         <li>
-                            <a href="#">Оплатить можно любым удобным способом:</a>
+                            <a href="#">{t("textZapoln7")}</a>
                         </li>
                     </ul>
                    <LogoPayment/>
@@ -65,15 +59,15 @@ const BlockFile = () => {
                 <div className="dflex">
                     <div className="step d-flex align-items-center">
                         <div className="numb">1</div>
-                        <div className="text"><p>Загрузите изображение</p></div>
+                        <div className="text"><p>{t("num4")}</p></div>
                     </div>
                     <div className="step d-flex align-items-center">
                         <div className="numb">2</div>
-                        <div className="text"><p>Выберите телеканалы и даты, и нажмите «Разместить баннер»</p></div>
+                        <div className="text"><p>{t("num2")}</p></div>
                     </div>
                     <div className="step d-flex align-items-center">
                         <div className="numb">3</div>
-                        <div className="text"><p>Оплатите объявление!</p></div>
+                        <div className="text"><p>{t("num3")}</p></div>
                     </div>
                 </div>
             </div>
@@ -81,4 +75,4 @@ const BlockFile = () => {
     )
 }
 
-export default BlockFile;
+export default withTranslation() (BlockFile);

@@ -1,15 +1,15 @@
 import React from "react";
 import LogoPayment from "../Form/LogoPayment/LogoPayment";
 import {NavLink} from "react-router-dom";
-import Voprosotvet from "../../Natv/Voprosotvet/Voprosotvet";
-import Pravila_zapolneniya_teksta from "../../Natv/Pravila_zapolneniya_teksta/Pravila_zapolneniya_teksta";
+import { withTranslation } from "react-i18next";
 
-const Footer = () => {
+const Footer = (props) => {
+    const { t } = props;
     return(
         <footer className="pd-40 d-flex justify-content-between">
             <div className="d-space">
                 <div className="w-ntv">
-                    <p className="t-left">©2017. Сервис предоставляется ОсОО "НаТВ"</p>
+                    <p className="t-left">{t("footer")}</p>
                     <LogoPayment/>
 
 
@@ -18,31 +18,25 @@ const Footer = () => {
                 <div className="footer-mx">
                     <ul className="list-unstyled">
                         <li>
-                            <NavLink to="/Oproekte">О
-                                проекте</NavLink>
+                            <NavLink to="/Oproekte">{t("listNav")}</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/Payment">Способы
-                                оплаты</NavLink>
+                            <NavLink to="/Payment">{t("listNav1")}</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/dlya_yuridicheskih_lic">Для юридических
-                                лиц</NavLink>
+                            <NavLink to="/dlya_yuridicheskih_lic">{t("listNav2")}</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/voprosotvet">Вопрос-ответ</NavLink>
+                            <NavLink to="/voprosotvet">{t("listNav3")}</NavLink>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/watch?v=XI75m6fUtZE">Видеоинструкция по
-                                размещению</a>
+                            <a href="https://www.youtube.com/watch?v=XI75m6fUtZE">{t("listNav4")}</a>
                         </li>
                         <li>
-                            <NavLink to="/oferta">Договор
-                                публичной оферты</NavLink>
+                            <NavLink to="/oferta">{t("listNav5")}</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/pravila_zapolneniya_teksta">Правила
-                                заполнения текста</NavLink>
+                            <NavLink to="/pravila_zapolneniya_teksta">{t("listNav6")}</NavLink>
                         </li>
                     </ul>
 
@@ -52,14 +46,14 @@ const Footer = () => {
 
             <div className="float-m">
                 <p className="t-align">
-                    По вопросам сотрудничества:
-                    <a href="mailto:info@natv.kg">info@natv.kg</a>
+                    {t("footer2")}
+                    <a href="mailto:info@natv.kg"> {t("gmail")}</a>
                     <br/>
-                    0 550 44 06 56, звонки пн-пт с 10:00 до 16:00
+                    {t("footer3")}
                 </p>
 
                 <div className="d-none">
-                    <p>©2017. Сервис предоставляется ОсОО "НаТВ"</p>
+                    <p>{t("footer")}</p>
                     <LogoPayment/>
                 </div>
 
@@ -68,4 +62,4 @@ const Footer = () => {
     )
 }
 
-export default Footer;
+export default withTranslation() (Footer);

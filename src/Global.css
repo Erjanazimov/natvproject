@@ -82,6 +82,11 @@ header {
     padding-top: 21px;
 }
 
+button:hover{
+    background-color: #00000021;
+    border-radius: 10px;
+}
+
 .pd-40{
     padding-left: 40px;
     padding-right: 40px;
@@ -100,12 +105,13 @@ header {
     color: #fff;
 }
 
-.langs a{
+.langs button{
     text-transform: uppercase;
     padding: 5px 15px;
     color: #c20937;
     font-size: 16px;
     margin-right: 5px;
+    border: none;
 }
 
 .cont-s{
@@ -310,7 +316,6 @@ label{
     float: left;
     display: block;
     height: 36px;
-    margin: -15px 0px 0px 0px;
 }
 
 .one-title{
@@ -521,6 +526,48 @@ footer li{
     margin-left: 50px;
 }
 
+.modal-body {
+    padding: 30px 20px;
+}
+
+.one_tv_modal {
+    line-height: 20px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.one_tv_modal #skidka {
+    border: 1px solid #c20937;
+    font-size: 12px;
+    margin: 10px 0 15px -20px !important;
+    padding: 10px;
+}
+
+.one_tv_modal #skidka .cont {
+    color: #c20937;
+    font-weight: bold;
+}
+
+.contyt{
+    color: #c20937;
+    font-weight: bold;
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-skidki{
+    margin-top: -40px;
+}
+
+@media screen and (max-width: 1600px){
+    .DayPicker-Month{
+        width: 440px;
+    }
+}
+
 @media screen and (max-width: 1200px){
 
 }
@@ -684,6 +731,10 @@ footer li{
 
     .page p {
         width: 100%;
+    }
+
+    .div-btn{
+        margin: 0 auto;
     }
 
 }

@@ -1,91 +1,118 @@
 import React from "react";
 import LogoPayment from "../../../Components/Form/LogoPayment/LogoPayment";
+import { withTranslation } from "react-i18next";
+import ModalDate from "../../../Components/ModalDate/ModalDate";
+let SimvolSk = React.createRef();
 
+class Blocktext extends React.Component {
+    constructor(props) {
+        super(props);
 
-const Blocktext = () => {
-    return(
-        <>
-            <div className="pd-40 mn">
-                <div className="@media textarea-fons">
-                    <div className="row">
-                        <div className="@media">
-                            <div className="text-title">
-                                <div className="row d-flex justify-content-between">
-                                    <div className="d-flex justify-content-between">
-                                        <h3>ВВЕДИТЕ ТЕКСТ ОБЪЯВЛЕНИЯ</h3>
-                                        <div className="text-right">
-                                            Символов: <span>0</span>
+        this.state = {
+            Simvol: [0],
+            TextSimvol: []
+        }
+    }
+
+    componentDidMount() {
+    }
+
+    render() {
+
+        let { t } = this.props;
+        let text = React.createRef();
+        let ResT = () => {
+            let resT = text.current.value.replace(/\s/g, '')
+
+            if (resT !== " "){
+                this.setState({
+                    TextSimvol: resT,
+                    Simvol: resT.length
+                })
+            }
+
+        }
+
+        return (
+            <>
+                <div className="pd-40 mn">
+                    <div className="@media textarea-fons">
+                        <div className="row">
+                            <div className="@media">
+                                <div className="text-title">
+                                    <div className="row d-flex justify-content-between">
+                                        <div className="d-flex justify-content-between">
+                                            <h3>{t("TexarayObv")}</h3>
+                                            <div className="text-right">
+                                                {t("Simvol")} <span>{this.state.Simvol}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <textarea ref={text} onChange={ResT} className="text-enter" name="text"
+                                  placeholder={t("placeholder")}/>
                     </div>
-                    <textarea className="text-enter" name="text"
-                              placeholder="Отдам даром 0 789 545 654"></textarea>
+
+                    <div className="@media cont">
+                        <h3>{t("textZapoln")}</h3>
+                        <p>{t("textZapoln2")}</p>
+                        <ul>
+                            <li>
+                                {t("textZapoln3")}
+                            </li>
+                            <li>
+                                {t("textZapoln4")}
+                            </li>
+                            <li>
+                                {t("textZapoln5")}
+                            </li>
+                            <li>
+                                {t("textZapoln6")}
+                            </li>
+                            <li>
+                                <a href="#">{t("textZapoln7")}</a>
+                            </li>
+                        </ul>
+                        <LogoPayment/>
+
+                    </div>
                 </div>
-
-            <div className="@media cont">
-                <h3>Правила заполнения текста</h3>
-                <p>Уважаемый Рекламодатель!</p>
-                <ul>
-                    <li>
-                        При заполнении объявления после каждого слова должен обязательно стоять
-                        пробел;
-                    </li>
-                    <li>
-                        Размещенный текст не должен побуждать граждан к насилию, агрессии и опасным
-                        действиям, создающим угрозу жизни и здоровью, а также призывающему к
-                        беспорядку;
-                    </li>
-                    <li>
-                        Рекламодатель самостоятельно несет ответственность за соответствие рекламы
-                        действующему законодательству Кыргызской Республики о рекламе;
-                    </li>
-                    <li>
-                        Если рекламируемый товар/услуга подлежат лицензированию укажите номера
-                        лицензий и наименование органов, выдавшего их и/или укажите «товар
-                        сертифицирован», если рекламируемый товар подлежит обязательной
-                        сертификации;
-                    </li>
-                    <li>
-                        <a href="#">Оплатить можно любым удобным способом:</a>
-                    </li>
-                </ul>
-                <LogoPayment/>
-
-            </div>
-            </div>
-            <div className="pd-40 mt-5 pdb-40">
-                <div className="dflex">
-                    <div className="step d-flex align-items-center">
-                        <div className="numb">1</div>
-                        <div className="text">
-                            <p>
-                                Введите текст вашего объявления
-                            </p>
+                <div className="pd-40 mt-5 pdb-40">
+                    <div className="dflex">
+                        <div className="step d-flex align-items-center">
+                            <div className="numb">1</div>
+                            <div className="text">
+                                <p>
+                                    {t("num1")}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="step d-flex align-items-center">
-                        <div className="numb">2</div>
-                        <div className="text">
-                            <p>
-                                Выберите телеканалы и даты, и нажмите "Разместить объявление"
-                            </p>
+                        <div className="step d-flex align-items-center">
+                            <div className="numb">2</div>
+                            <div className="text">
+                                <p>
+                                    {t("num2")}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="step d-flex align-items-center">
-                        <div className="numb">3</div>
-                        <div className="text">
-                            <p>
-                                Оплатите объявление!
-                            </p>
+                        <div className="step d-flex align-items-center">
+                            <div className="numb">3</div>
+                            <div className="text">
+                                <p>
+                                    {t("num3")}
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <ModalDate ResSimvol={this.state.TextSimvol}/>
             </>
-    )
+        )
+    }
 }
 
-export default Blocktext;
+export default withTranslation() (Blocktext);

@@ -9,12 +9,12 @@ import Dlya_yuridicheskih_lic from "./Natv/Dlya_yuridicheskih_lic/Dlya_yuridiche
 import Voprosotvet from "./Natv/Voprosotvet/Voprosotvet";
 import Oferta from "./Natv/Oferta/Oferta";
 import Pravila_zapolneniya_teksta from "./Natv/Pravila_zapolneniya_teksta/Pravila_zapolneniya_teksta";
+import ModalDate from "./Components/ModalDate/ModalDate";
 
 const App = () => {
     return(
         <>
             <BrowserRouter>
-
              <Route path='/' component={Glavnaya} exact/>
               <Route path="/glavnaya2" component={Glavnaya2} exact/>
                 <Route path="/Oproekte" component={Oproekte} exact/>
@@ -23,7 +23,9 @@ const App = () => {
                 <Route path="/voprosotvet" component={Voprosotvet} exact />
                 <Route path="/oferta" component={Oferta} exact />
                 <Route path="/pravila_zapolneniya_teksta" component={Pravila_zapolneniya_teksta} exact />
+                <ModalDate/>
             </BrowserRouter>
+
         </>
     )
 }
