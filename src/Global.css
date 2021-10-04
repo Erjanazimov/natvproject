@@ -318,6 +318,12 @@ label{
     height: 36px;
 }
 
+.border_end{
+    border-bottom: 1px solid #ececec;
+    margin-top: 20px;
+    width: 100%;
+}
+
 .one-title{
     text-transform: uppercase;
     font-size: 18px;

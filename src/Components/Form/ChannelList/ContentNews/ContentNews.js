@@ -14,36 +14,34 @@ class ContentNews extends React.Component {
     }
 
     render() {
+        let inpu = React.createRef();
         let IdModal = () => {
-
-            this.setState({
-                IdPost: this.props.id
-            })
     }
+
+    console.log(this.props.summa)
         return(
             <>
-                <div>
-                    <div data-bs-toggle="modal" data-bs-target="#add-modal" onClick={IdModal}>
-                        <div className="d-flex justify-content-between mt-3 flex-wrap">
-                            <div className="d-flex align-items-center news">
-                                <div className="img">
+                <div data-id={this.props.id}>
+                    <div id="idTV" data-bs-toggle="modal" data-id={this.props.id} data-bs-target="#add-modal" onClick={IdModal}>
+                        <div className="d-flex justify-content-between mt-3 flex-wrap" data-id={this.props.id}>
+                            <div className="d-flex align-items-center news" data-id={this.props.id}>
+                                <div className="img" data-id={this.props.id}>
                                     <img
-                                        src={this.props.photo}/>
+                                        src={this.props.photo} data-id={this.props.id}/>
                                 </div>
-                                <span className="one-title">{this.props.channelName}</span>
+                                <span className="one-title" data-id={this.props.id}>{this.props.channelName}</span>
                             </div>
-                            <div className="d-flex align-items-center mt-3 wid">
+                            <div className="d-flex align-items-center mt-3 wid" data-id={this.props.id}>
                                 {/*<p className="show-dates rounded-start"></p>*/}
-                                <input type="text" className="show-dates rounded-start"/>
-                                <span className="img-calen"></span>
+                                <input type="text" className="show-dates rounded-start" data-id={this.props.id}/>
+                                <span className="img-calen" data-id={this.props.id}></span>
                             </div>
-                            <div className="d-flex align-items-center mx">
-                                <span className="price-real">0.0 сом</span>
+                            <div className="d-flex align-items-center mx" data-id={this.props.id}>
+                                <span className="price-real" data-id={this.props.id}>0.0 сом</span>
                             </div>
                         </div>
                     </div>
-                    <hr/>
-                    <ModalDate idM={this.state.IdPost}/>
+                    <div className="border_end" data-id={this.props.id}> </div>
                 </div>
 
             </>

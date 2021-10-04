@@ -1,15 +1,20 @@
 import React from "react";
 import ContentNews from "./ContentNews/ContentNews";
 import { withTranslation } from "react-i18next";
+let inputy = React.createRef()
 
 class ChannelList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            post: []
+            post: [],
+            id: {}
         }
+
+        this.GetId = this.GetId.bind(this)
     }
+
 
     componentDidMount() {
         this.getPostById();
@@ -29,12 +34,20 @@ class ChannelList extends React.Component {
             .then(data => this.setState({post:data}))
     }
 
+    GetId(e){
+     this.setState({
+            id: e.target.dataset.id
+        })
+
+
+    }
+
 
     render() {
-
         const {t} = this.props;
         return (
-            <div className="pd-40 channel-list-cont">
+            <div className="pd-40 channel-list-cont" >
+                <input id="idd" type="hidden"  value={this.state.id}/>
                 <h2>{t("tv")}</h2>
                 <div className="channel-list">
                     <div className="title">
@@ -51,6 +64,7 @@ class ChannelList extends React.Component {
                         </div>
                     </div>
                     <div className="content-news">
+                        <div onClick={this.GetId}>
                         {
                              this.state.post.map(item => {
                                 return <ContentNews
@@ -61,6 +75,7 @@ class ChannelList extends React.Component {
 
                             })
                         }
+                        </div>
 
                             <div className="total">
                                 <div className="more-channel">

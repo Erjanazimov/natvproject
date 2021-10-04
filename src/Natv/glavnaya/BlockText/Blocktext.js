@@ -36,6 +36,7 @@ class Blocktext extends React.Component {
         return (
             <>
                 <div className="pd-40 mn">
+                    <ModalDate simvol={this.state.TextSimvol}/>
                     <div className="@media textarea-fons">
                         <div className="row">
                             <div className="@media">

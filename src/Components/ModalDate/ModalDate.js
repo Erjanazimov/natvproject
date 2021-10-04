@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import 'react-calendar/dist/Calendar.css';
 import DayPicker, { DateUtils } from "react-day-picker";
 import 'react-day-picker/lib/style.css';
+import ChannelList from "../Form/ChannelList/ChannelList";
+import ContentNews from "../Form/ChannelList/ContentNews/ContentNews";
 
 class ModalDate extends React.Component {
     constructor(props) {
@@ -9,8 +11,16 @@ class ModalDate extends React.Component {
         this.handleDayClick = this.handleDayClick.bind(this);
         this.state = {
             selectedDays: [],
-            resDate: []
-        };
+            resDate: [],
+            addPost: {},
+            summaTV: []
+        }
+
+        this.ResDate = this.ResDate.bind(this)
+    }
+
+    componentDidMount() {
+        // this.getDate()
     }
 
     handleDayClick(day, { selected }) {
@@ -27,26 +37,69 @@ class ModalDate extends React.Component {
         this.setState({ selectedDays });
     }
 
+    ResDate(){
+        let data = this.state.selectedDays;
+        let res = document.getElementById("idd")
+        let obj = {}
+        let mas = [];
+
+        data.map(item => {
+            // let resDate = new Date(item).toLocaleDateString("coptic");
+
+            let resDate = new Date(item);
+            let mm = resDate.getMonth() + 1;
+            let dd = resDate.getDate();
+            let yy = resDate.getFullYear();
+            var myDateString = yy + '-' + mm + '-' + dd;
+            mas.push(myDateString);
+        })
+
+        obj.channelId = res.value;
+        obj.dates = mas;
+        // obj.text = this.props.simvol;
+
+        this.getDate(obj)
+    }
+
+    getDate(obj) {
+        //     let base_url = "https://na-tv.herokuapp.com/api/v1/order/get-summa";
+        //
+        //     let options = {
+        //         method: "POST",
+        //         headers:{
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(obj)
+        //     }
+        //
+        //     fetch(base_url, options)
+        //         .then(response => {
+        //             if (response.ok){
+        //                 return response.json();
+        //             } else{
+        //                 alert("Забыли добавить текст: Код ошибки " + response.status)
+        //             }
+        //         })
+        //         .then(data => this.setState({
+        //             summaTV: data
+        //         }))
+        //
+        // }
+
+        // let danyTV = [];
+        this.setState({
+                        summaTV: obj
+                    })
+
+    }
+
 
     render() {
-        let ResDate = () => {
-            // this.setState({selectedDays:[]});
-            let data = this.state.selectedDays;
-            let mas = [];
-
-            data.map(item => {
-                let resDate = new Date(item).toLocaleDateString("en-GB");
-                mas.push(resDate);
-            })
-
-        }
-
-        if (this.props.idM !== 0){
-          console.log(this.props.idM)
-        }
-        // console.log(this.props.ResSimvol)
         return (
             <>
+                <div className="d-none">
+                    <ContentNews summa={this.state.summaTV}/>
+                </div>
                 <div className="modal fade" id="add-modal" tabIndex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div className="modal-dialog">
@@ -80,7 +133,7 @@ class ModalDate extends React.Component {
                                                data-bs-dismiss="modal"/>
                                     </div>
                                     <div>
-                                        <input type="button" onClick={ResDate} id="ok_date"
+                                        <input type="button" onClick={this.ResDate} id="ok_date"
                                                className="btn bg-danger text-white"
                                                value="Сохранить"/>
                                     </div>
