@@ -316,6 +316,7 @@ label{
     float: left;
     display: block;
     height: 36px;
+    margin-bottom: 16px;
 }
 
 .border_end{

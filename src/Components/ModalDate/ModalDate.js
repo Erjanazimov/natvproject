@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import 'react-calendar/dist/Calendar.css';
 import DayPicker, { DateUtils } from "react-day-picker";
 import 'react-day-picker/lib/style.css';
-import ChannelList from "../Form/ChannelList/ChannelList";
+
 import ContentNews from "../Form/ChannelList/ContentNews/ContentNews";
 
 class ModalDate extends React.Component {
@@ -13,14 +13,18 @@ class ModalDate extends React.Component {
             selectedDays: [],
             resDate: [],
             addPost: {},
-            summaTV: []
+            summaWithoutDiscount: [],
+            summaWithDiscount: []
         }
 
-        this.ResDate = this.ResDate.bind(this)
+
+        this.ResDate = this.ResDate.bind(this);
+        this.getDate = this.getDate.bind(this);
+        this.handleDayClick = this.handleDayClick.bind(this);
+        this.UrlSum = this.UrlSum.bind(this);
     }
 
     componentDidMount() {
-        // this.getDate()
     }
 
     handleDayClick(day, { selected }) {
@@ -39,8 +43,9 @@ class ModalDate extends React.Component {
 
     ResDate(){
         let data = this.state.selectedDays;
-        let res = document.getElementById("idd")
-        let obj = {}
+        let res = document.getElementById("idd");
+        let obj = {
+        }
         let mas = [];
 
         data.map(item => {
@@ -49,47 +54,48 @@ class ModalDate extends React.Component {
             let resDate = new Date(item);
             let mm = resDate.getMonth() + 1;
             let dd = resDate.getDate();
-            let yy = resDate.getFullYear();
-            var myDateString = yy + '-' + mm + '-' + dd;
+            let yy = resDate.getFullYear(); //dd-mm-yy
+            let myDateString = yy + '-' + mm + '-' + dd;
             mas.push(myDateString);
         })
 
         obj.channelId = res.value;
         obj.dates = mas;
-        // obj.text = this.props.simvol;
+        obj.text = this.props.simvol;
 
         this.getDate(obj)
     }
 
     getDate(obj) {
-        //     let base_url = "https://na-tv.herokuapp.com/api/v1/order/get-summa";
-        //
-        //     let options = {
-        //         method: "POST",
-        //         headers:{
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(obj)
-        //     }
-        //
-        //     fetch(base_url, options)
-        //         .then(response => {
-        //             if (response.ok){
-        //                 return response.json();
-        //             } else{
-        //                 alert("Забыли добавить текст: Код ошибки " + response.status)
-        //             }
-        //         })
-        //         .then(data => this.setState({
-        //             summaTV: data
-        //         }))
-        //
-        // }
+            let base_url = "https://na-tv.herokuapp.com/api/v1/order/get-summa";
 
-        // let danyTV = [];
-        this.setState({
-                        summaTV: obj
-                    })
+            let options = {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+            }
+
+            fetch(base_url, options)
+                .then(response => {
+                    if (response.ok){
+                        return response.json();
+                    } else{
+                        alert("Забыли добавить текст: Код ошибки " + response.status)
+                    }
+                })
+                .then(data => this.setState({
+                    summaWithoutDiscount: data.summaWithoutDiscount,
+                    summaWithDiscount: data.summaWithDiscount
+                }))
+
+                this.state.selectedDays = []
+
+        this.UrlSum(obj)
+    }
+
+    UrlSum(obj){
 
     }
 
@@ -97,11 +103,11 @@ class ModalDate extends React.Component {
     render() {
         return (
             <>
-                <div className="d-none">
-                    <ContentNews summa={this.state.summaTV}/>
-                </div>
-                <div className="modal fade" id="add-modal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                <div className="modal fade " id="add-modal" tabIndex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
+                    <div className="d-none">
+                        <ContentNews/>
+                    </div>
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="d-flex justify-content-end m-2">
@@ -110,6 +116,12 @@ class ModalDate extends React.Component {
                             </div>
                             <div className="modal-body">
                                 <div className="one_tv_modal modal-skidki">
+                                   <p>
+                                       Цена: {this.state.summaWithoutDiscount} сом
+                                   </p>
+                                    <p>
+                                        Со скидкой: <span style={{color: "red"}}>{this.state.summaWithDiscount} сом</span>
+                                    </p>
                                     <div className="row" id="skidka" style={{display: "block;"}}>
                                         <div className="contyt">
                                             При заказе на данном телеканале действует система скидок:

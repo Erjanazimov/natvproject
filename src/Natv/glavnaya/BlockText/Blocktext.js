@@ -2,7 +2,6 @@ import React from "react";
 import LogoPayment from "../../../Components/Form/LogoPayment/LogoPayment";
 import { withTranslation } from "react-i18next";
 import ModalDate from "../../../Components/ModalDate/ModalDate";
-let SimvolSk = React.createRef();
 
 class Blocktext extends React.Component {
     constructor(props) {
@@ -23,17 +22,15 @@ class Blocktext extends React.Component {
         let text = React.createRef();
         let ResT = () => {
             let resT = text.current.value.replace(/\s/g, '')
-
-            if (resT !== " "){
                 this.setState({
                     TextSimvol: resT,
                     Simvol: resT.length
                 })
-            }
 
         }
 
         return (
+
             <>
                 <div className="pd-40 mn">
                     <ModalDate simvol={this.state.TextSimvol}/>

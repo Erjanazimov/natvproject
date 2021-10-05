@@ -38,16 +38,19 @@ class ChannelList extends React.Component {
      this.setState({
             id: e.target.dataset.id
         })
-
-
     }
 
 
+    // Gyu(e){
+    //     console.log(e.currentTarget)
+    // }
+
     render() {
         const {t} = this.props;
+        // console.log(this.props)
         return (
             <div className="pd-40 channel-list-cont" >
-                <input id="idd" type="hidden"  value={this.state.id}/>
+                <input id="idd" type="hidden" value={this.state.id}/>
                 <h2>{t("tv")}</h2>
                 <div className="channel-list">
                     <div className="title">
